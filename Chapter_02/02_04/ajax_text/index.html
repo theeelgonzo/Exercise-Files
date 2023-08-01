@@ -14,9 +14,22 @@
 
     <script>
       function replaceText() {
+        const target = document.getElementById("main");
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', 'new_content.txt', true);
+        xhr.onreadystatechange = function(){
+          console.log('readyState ' + xhr.readyState);
+          if(xhr.readyState == 2) {
+            target.innerHTML = 'Loading...'
+          }
+          if(xhr.readyState == 4 && xhr.status == 200){
+            target.innerHTML = xhr.responseText;
+          }
+        }
+        xhr.send();
       }
 
-      var button = document.getElementById ("ajax-button");
+      const button = document.getElementById ("ajax-button");
       button.addEventListener("click", replaceText);
     </script>
 
