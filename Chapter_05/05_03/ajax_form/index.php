@@ -7,6 +7,7 @@
       #result {
         display: none;
       }
+      .error
     </style>
   </head>
   <body>
@@ -76,7 +77,13 @@
           if(xhr.readyState == 4 && xhr.status == 200) {
             var result = xhr.responseText;
             console.log('Result: ' + result);
-            postResult(result);
+            var json = JSON.parse(result);
+            if(json.hasOwnProperty('errors') && json.errors.length > 0){
+              displayErrors(json.errors);
+            } else {
+              postResult(json.volume);
+            }
+            //postResult(result);
           }
         };
         xhr.send(form_data);
