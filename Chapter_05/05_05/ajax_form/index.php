@@ -54,6 +54,20 @@
         spinner.style.display = 'none';
       }
 
+      function enableSubmitButton{
+        var button = document.getElementById("ajax-submit");
+        button.disabled = false;
+        button.disable = 'Ajax Submit';
+
+      }
+
+      function disableSubmitButton{
+        var button = document.getElementById("ajax-submit");
+        button.disabled = true;
+        button.value = 'Loading...';
+
+      }
+
       function displayErrors(errors) {
         var inputs = document.getElementsByTagName('input');
         for(i=0; i < inputs.length; i++) {
@@ -96,8 +110,11 @@
         clearResult();
         clearErrors();
         showSpinner();
+        disableSubmitButton();
 
         var form = document.getElementById("measurement-form");
+        
+
         var action = form.getAttribute("action");
 
         // gather form data
@@ -117,6 +134,7 @@
             console.log('Result: ' + result);
 
             hideSpinner();
+            enableSubmitButton();
 
             var json = JSON.parse(result);
             if(json.hasOwnProperty('errors') && json.errors.length > 0) {
