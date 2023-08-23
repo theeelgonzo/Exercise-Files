@@ -10,6 +10,9 @@
       .error {
         border: 1px solid red;
       }
+      #spinner {
+        display:none;
+      }
     </style>
   </head>
   <body>
@@ -26,6 +29,9 @@
         <input id="html-submit" type="submit" value="Submit" />
         <input id="ajax-submit" type="button" value="Ajax Submit" />
       </form>
+    </div>
+    <div id="spinner">
+        <img src="spinner.gif" width="50" height='50'>
     </div>
 
     <div id="result">
