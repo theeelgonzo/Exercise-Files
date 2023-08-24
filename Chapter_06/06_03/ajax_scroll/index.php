@@ -52,6 +52,20 @@
         load_more.style.display = 'none';
       }
 
+      function appendToDiv(div, new_html) {
+        //put new html in temp div
+        //causes browser to parse it as elements
+        var temp = document.createElement('div');
+        temp.innerHTML = new_html;
+        
+        var class_name = temp.firstElementChild.className;
+        var items = temp.getElementsByClassName(class_name);
+        var len = items.length;
+        for(i=0; i < len; i++) {
+          div.appendChild(items[0]);
+        }
+      }
+
       function loadMore() {
 
         showSpinner();
@@ -67,6 +81,7 @@
 
             hideSpinner();
             // append results to end of blog posts
+            appendToDiv(container, result);
             showLoadMore();
 
           }
